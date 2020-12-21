@@ -19,6 +19,9 @@ static const char *colors[][3]      = {
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
 };
+static const char *upvol[]   = { "amixer", "set", "Master", "3+",     NULL };
+static const char *downvol[] = { "amixer", "set", "Master", "3-",     NULL };
+static const char *mutevol[] = { "amixer", "set", "Master", "toggle", NULL };
 
 /* tagging */
 static const char *tags[] = { "", "", "3", "4", "5", "6", "7", "", "" };
@@ -91,6 +94,9 @@ static Key keys[] = {
         { MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
 	{ MODKEY,              	        XK_Right,  shiftview,  	   { .i = +1 } },
 	{ MODKEY,              	        XK_Left,   shiftview,      { .i = -1 } },
+	{ MODKEY,                       XK_F12,    spawn,          {.v = upvol   } },
+	{ MODKEY,                       XK_F11,    spawn,          {.v = downvol } },
+	{ MODKEY,                       XK_F10,    spawn,          {.v = mutevol } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
