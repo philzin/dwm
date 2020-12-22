@@ -7,7 +7,7 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int focusonwheel       = 0;
-static const char *fonts[]          = { "monospace:size=14", "fontawesome:size=14" };
+static const char *fonts[]          = { "monospace:size=14", "fontawesome:size=14", "Noto Color Emoji:size=14" };
 static const char dmenufont[]       = "monospace:size=14";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
@@ -61,7 +61,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "urxvt", NULL };
+static const char *termcmd[]  = { "st", NULL };
 static const char *browsercmd[]  = { "chromium", NULL };
 static const char *disccmd[]  = { "discord", NULL };
 
@@ -102,9 +102,9 @@ static Key keys[] = {
 	{ 0,           XF86XK_AudioRaiseVolume,    spawn,          {.v = upvol   } },
 	{ 0,           XF86XK_AudioLowerVolume,    spawn,          {.v = downvol } },
 	{ 0,                  XF86XK_AudioMute,    spawn,          {.v = mutevol } },
-	{ 0,				XK_Print,  spawn,          SHCMD("sleep 1s; scrot ~/Pictures/screenshots/%Y-%m-%d_$wx$h_ss.png -e 'xclip -selection clipboard -target image/png < $f'")  },
-	{ Mod1Mask,			XK_Print,  spawn,	   SHCMD("sleep 1s; scrot -u ~/Pictures/screenshots/%Y-%m-%d_$wx$h_ss.png -e 'xclip -selection clipboard -target image/png < $f'")  },
-	{ MODKEY|ShiftMask,		XK_s,  spawn,	 	   SHCMD("sleep 1s; scrot -s ~/Pictures/screenshots/%Y-%m-%d_$wx$h_ss.png -e 'xclip -selection clipboard -target image/png < $f'")  },
+	{ 0,				XK_Print,  spawn,          SHCMD("scrot ~/Pictures/screenshots/%Y-%m-%d_$wx$h_ss.png -e 'xclip -selection clipboard -target image/png < $f'")  },
+	{ Mod1Mask,			XK_Print,  spawn,	   SHCMD("scrot -u ~/Pictures/screenshots/%Y-%m-%d_$wx$h_ss.png -e 'xclip -selection clipboard -target image/png < $f'")  },
+	{ MODKEY|ShiftMask,		XK_s,  spawn,	 	   SHCMD("sleep 0.1s; scrot -s ~/Pictures/screenshots/%Y-%m-%d_$wx$h_ss.png -e 'xclip -selection clipboard -target image/png < $f'")  },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
@@ -133,4 +133,3 @@ static Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
-
