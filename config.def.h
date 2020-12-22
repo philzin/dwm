@@ -26,7 +26,7 @@ static const char *scrot[] = { "scrot", NULL };
 static const char *scrotu[] = { "scrot", "-u", NULL };
 
 /* tagging */
-static const char *tags[] = { "", "", "3", "4", "5", "6", "7", "", "" };
+static const char *tags[] = { "", "", "", "4", "5", "6", "7", "", "" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -63,9 +63,10 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "st", NULL };
+static const char *termcmd[]  = { "urxvt", NULL };
 
 #include "shiftview.c"
+#include <X11/XF86keysym.h>
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_r,      spawn,          {.v = dmenucmd } },
@@ -96,9 +97,9 @@ static Key keys[] = {
         { MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
 	{ MODKEY,              	        XK_Right,  shiftview,  	   { .i = +1 } },
 	{ MODKEY,              	        XK_Left,   shiftview,      { .i = -1 } },
-	{ MODKEY,                       XK_F12,    spawn,          {.v = upvol   } },
-	{ MODKEY,                       XK_F11,    spawn,          {.v = downvol } },
-	{ MODKEY,                       XK_F10,    spawn,          {.v = mutevol } },
+	{ 0,                       XF86XK_AudioRaiseVolume,    spawn,          {.v = upvol   } },
+	{ 0,                       XF86XK_AudioLowerVolume,    spawn,          {.v = downvol } },
+	{ 0,                       XF86XK_AudioMute,    spawn,          {.v = mutevol } },
 	{ 0,				XK_Print,  spawn,          {.v = scrot } },
 	{ Mod1Mask,			XK_Print,  spawn,	   {.v = scrotu } },
 	TAGKEYS(                        XK_1,                      0)
