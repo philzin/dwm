@@ -112,9 +112,6 @@ static Key keys[] = {
 	{ 0,           XF86XK_AudioRaiseVolume,    spawn,          {.v = upvol   } },
 	{ 0,           XF86XK_AudioLowerVolume,    spawn,          {.v = downvol } },
 	{ 0,                  XF86XK_AudioMute,    spawn,          {.v = mutevol } },
-	{ 0,				XK_Print,  spawn,          SHCMD("scrot ~/Pictures/screenshots/ -e 'xclip -selection clipboard -target image/png < $f'")  },
-	{ Mod1Mask,			XK_Print,  spawn,	   SHCMD("scrot -u ~/Pictures/screenshots/ -e 'xclip -selection clipboard -target image/png < $f'")  },
-	{ MODKEY|ShiftMask,		XK_s,  spawn,	 	   SHCMD("sleep 0.1s; scrot -s ~/Pictures/screenshots/ -e 'xclip -selection clipboard -target image/png < $f'")  },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
