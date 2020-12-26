@@ -8,7 +8,7 @@ static const int swallowfloating    = 0;        /* 1 means swallow floating wind
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int focusonwheel       = 0;
-static const char *fonts[]          = { "monospace:size=14", "fontawesome:size=14" };
+static const char *fonts[]          = { "monospace:size=14", "Noto Color Emoji:pixelsize=14:antialias=true:autohint=true", "fontawesome:size=14" };
 static const char dmenufont[]       = "monospace:size=14";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
@@ -22,7 +22,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "", "4", "5", "6", "🀄", "", "" };
+static const char *tags[] = { "", "", "", "", "5", "6", "🀄", "", "" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -69,10 +69,12 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *browsercmd[]  = { "chromium", NULL };
-static const char *disccmd[]  = { "gtk-launch", "discord", NULL };
+static const char *disccmd[]  = { "apulse", "discord", NULL };
 static const char *upvol[]   = { "amixer", "set", "Master", "3+",     NULL };
 static const char *downvol[] = { "amixer", "set", "Master", "3-",     NULL };
 static const char *mutevol[] = { "amixer", "set", "Master", "toggle", NULL };
+static const char *brightup[] = { "brightnessctl", "s", "10%+", NULL };
+static const char *brightdown[] = { "brightnessctl", "s", "10%-", NULL };
 
 #include "shiftview.c"
 #include <X11/XF86keysym.h>
@@ -112,9 +114,10 @@ static Key keys[] = {
 	{ 0,           XF86XK_AudioRaiseVolume,    spawn,          {.v = upvol   } },
 	{ 0,           XF86XK_AudioLowerVolume,    spawn,          {.v = downvol } },
 	{ 0,                  XF86XK_AudioMute,    spawn,          {.v = mutevol } },
-	{ 0,				XK_Print,  spawn,          SHCMD("scrot ~/Pictures/screenshots/ -e 'xclip -selection clipboard -target image/png < $f'")  },
-	{ Mod1Mask,			XK_Print,  spawn,	   SHCMD("scrot -u ~/Pictures/screenshots/ -e 'xclip -selection clipboard -target image/png < $f'")  },
-	{ MODKEY|ShiftMask,		XK_s,  spawn,	 	   SHCMD("sleep 0.1s; scrot -s ~/Pictures/screenshots/ -e 'xclip -selection clipboard -target image/png < $f'")  },
+	{ 0,		XF86XK_MonBrightnessUp,	   spawn,	   {.v = brightup } },
+	{ 0,		XF86XK_MonBrightnessDown,  spawn,	   {.v = brightdown } },
+	{ 0,				XK_Print,  spawn,	   SHCMD("maim | tee ~/Pictures/screenshots/$(date +%s).png | xclip -selection clipboard -target image/png") },
+	{ ControlMask,			XK_Print,  spawn,	   SHCMD("maim -s | tee ~/Pictures/screenshots/$(date +%s).png | xclip -selection clipboard -target image/png") },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
