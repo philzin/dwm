@@ -13,10 +13,10 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "monospace:pixelsize=14", "Noto Color Emoji:pixelsize=14:antialias=true" };
 static const char dmenufont[]       = "monospace:pixelsize=14";
-static const char col_gray1[]       = "#222222";
-static const char col_gray2[]       = "#444444";
-static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee";
+static const char col_gray1[]       = "#1d1f21";
+static const char col_gray2[]       = "#969896";
+static const char col_gray3[]       = "#c5c8c6";
+static const char col_gray4[]       = "#ffffff";
 static const char col_cyan[]        = "#6eaa42";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
