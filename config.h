@@ -43,6 +43,7 @@ static const Rule rules[] = {
 	{ NULL,      NULL,     "Discord",      1<<7,      0,          0,           0,        -1 },
 	{ NULL,      NULL,     "雀魂Plus",     1<<6,      0,          0,           0,        -1 },
 	{ NULL,      NULL,     "Majsoul Plus", 1<<6,      0,          0,           0,        -1 },
+	{ NULL,      NULL,     "Transmission Remote", 1<<2, 0,        0,           0,        -1 },
 };
 
 /* layout(s) */
@@ -125,8 +126,8 @@ static Key keys[] = {
 	{ 0,                  XF86XK_AudioMute,    spawn,          {.v = mutevol } },
 	{ 0,		XF86XK_MonBrightnessUp,	   spawn,	   {.v = brightup } },
 	{ 0,		XF86XK_MonBrightnessDown,  spawn,	   {.v = brightdown } },
-	{ 0,				XK_Print,  spawn,	   SHCMD("maim | tee ~/Pictures/screenshots/$(date +%s).png | xclip -selection clipboard -target image/png") },
-	{ ControlMask,			XK_Print,  spawn,	   SHCMD("maim -s | tee ~/Pictures/screenshots/$(date +%s).png | xclip -selection clipboard -target image/png") },
+	{ 0,				XK_Print,  spawn,	   SHCMD("maim -u | tee ~/Pictures/screenshots/$(date +%s).png | xclip -selection clipboard -target image/png") },
+	{ ControlMask,			XK_Print,  spawn,	   SHCMD("maim -su | tee ~/Pictures/screenshots/$(date +%s).png | xclip -selection clipboard -target image/png") },
 	{ MODKEY|ControlMask,		XK_f,	   spawn,	   SHCMD("flashplayer $(xclip -o)") },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
