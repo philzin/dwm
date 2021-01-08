@@ -45,7 +45,6 @@ static const Rule rules[] = {
 	{ NULL,      NULL,     "Majsoul Plus", 1<<6,      0,          0,           0,        -1 },
 	{ NULL,      NULL,     "Transmission Remote", 1<<2, 0,        0,           0,        -1 },
 	{ "mpv",     NULL,     NULL,           1<<1,      0,          0,           0,        -1 },
-	{ NULL,      NULL,     "Trackma",      1<<2,      0,          0,           0,        -1 },
 };
 
 /* layout(s) */
