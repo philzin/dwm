@@ -86,7 +86,7 @@ static const char *browsercmd[]  = { "chromium", NULL };
 static const char *disccmd[]  = { "discord", NULL };
 static const char *upvol[]   = { "pamixer", "-i", "5", NULL };
 static const char *downvol[]   = { "pamixer", "-d", "5", NULL };
-static const char *mutevol[]   = { "pamixer", "-m", NULL };
+static const char *mutevol[]   = { "pamixer", "-t", NULL };
 static const char *brightup[] = { "brightnessctl", "s", "10%+", NULL };
 static const char *brightdown[] = { "brightnessctl", "s", "10%-", NULL };
 
