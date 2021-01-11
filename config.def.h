@@ -129,6 +129,7 @@ static Key keys[] = {
 	{ 0,		XF86XK_MonBrightnessDown,  spawn,	   {.v = brightdown } },
 	{ 0,				XK_Print,  spawn,	   SHCMD("maim -u | tee ~/Pictures/screenshots/$(date +%s).png | xclip -selection clipboard -target image/png") },
 	{ ControlMask,			XK_Print,  spawn,	   SHCMD("maim -su | tee ~/Pictures/screenshots/$(date +%s).png | xclip -selection clipboard -target image/png") },
+	{ Mod1Mask,			XK_Print,  spawn,	   SHCMD("maim -ui $(xdotool getactivewindow) | tee ~/Pictures/screenshots/$(date +%s).png | xclip -selection clipboard -target image/png") },
 	{ MODKEY|ControlMask,		XK_f,	   spawn,	   SHCMD("flashplayer $(xclip -o)") },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
