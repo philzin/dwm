@@ -135,7 +135,6 @@ static Key keys[] = {
 	{ ControlMask,			XK_Print,  spawn,	   SHCMD("maim -su | tee ~/Pictures/screenshots/$(date +%s).png ~/.cache/lastscr.png | xclip -selection clipboard -target image/png") },
 	{ Mod1Mask,			XK_Print,  spawn,	   SHCMD("maim -ui $(xdotool getactivewindow) | tee ~/Pictures/screenshots/$(date +%s).png ~/.cache/lastscr.png | xclip -selection clipboard -target image/png") },
 	{ ControlMask|MODKEY|Mod1Mask,  XK_u,      spawn,	   SHCMD("curl -fsL -F \"files[]=@$(realpath ~/.cache/lastscr.png)\" https://uguu.se/upload.php | jq -r '.files[].url' | xclip -selection clipboard") },
-	{ MODKEY|ControlMask,		XK_f,	   spawn,	   SHCMD("flashplayer $(xclip -o)") },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
