@@ -101,11 +101,11 @@ static const char *brightdown[] = { "brightnessctl", "s", "10%-", NULL };
  * Xresources preferences to load at startup
  */
 ResourcePref resources[] = {
-		{ "background" ,        STRING,  &normbgcolor },
+		{ "color0",             STRING,  &normbgcolor },
 		{ "normbordercolor",    STRING,  &normbordercolor },
-		{ "foreground",         STRING,  &normfgcolor },
-		{ "color10",            STRING,  &selbgcolor },
-		{ "color10",            STRING,  &selbordercolor },
+		{ "color15",            STRING,  &normfgcolor },
+		{ "color2",             STRING,  &selbgcolor },
+		{ "color2",             STRING,  &selbordercolor },
 		{ "color15",            STRING,  &selfgcolor },
 		{ "borderpx",          	INTEGER, &borderpx },
 		{ "snap",          		INTEGER, &snap },
