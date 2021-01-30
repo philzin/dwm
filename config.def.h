@@ -103,7 +103,7 @@ static const char *brightdown[] = { "brightnessctl", "s", "10%-", NULL };
 ResourcePref resources[] = {
 		{ "color0",             STRING,  &normbgcolor },
 		{ "normbordercolor",    STRING,  &normbordercolor },
-		{ "color15",            STRING,  &normfgcolor },
+		{ "color7",             STRING,  &normfgcolor },
 		{ "color2",             STRING,  &selbgcolor },
 		{ "color2",             STRING,  &selbordercolor },
 		{ "color15",            STRING,  &selfgcolor },
