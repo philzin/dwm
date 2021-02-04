@@ -7,10 +7,10 @@ static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows sel
 static const unsigned int systrayspacing = 1;   /* systray spacing */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
 static const int showsystray        = 1;     /* 0 means no systray */
-static const unsigned int gappih    = 0;       /* horiz inner gap between windows */
-static const unsigned int gappiv    = 0;       /* vert inner gap between windows */
-static const unsigned int gappoh    = 0;       /* horiz outer gap between windows and screen edge */
-static const unsigned int gappov    = 0;       /* vert outer gap between windows and screen edge */
+static unsigned int gappih    = 0;       /* horiz inner gap between windows */
+static unsigned int gappiv    = 0;       /* vert inner gap between windows */
+static unsigned int gappoh    = 0;       /* horiz outer gap between windows and screen edge */
+static unsigned int gappov    = 0;       /* vert outer gap between windows and screen edge */
 static const int smartgaps          = 1;        /* 1 means no outer gap when there is only one window */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static int showbar                  = 1;        /* 0 means no bar */
@@ -108,12 +108,16 @@ ResourcePref resources[] = {
 		{ "color2",             STRING,  &selbordercolor },
 		{ "color15",            STRING,  &selfgcolor },
 		{ "borderpx",          	INTEGER, &borderpx },
-		{ "snap",          		INTEGER, &snap },
+		{ "snap",          	INTEGER, &snap },
 		{ "showbar",          	INTEGER, &showbar },
 		{ "topbar",          	INTEGER, &topbar },
 		{ "nmaster",          	INTEGER, &nmaster },
 		{ "resizehints",       	INTEGER, &resizehints },
-		{ "mfact",      	 	FLOAT,   &mfact },
+		{ "mfact",       	FLOAT,   &mfact },
+		{ "gappih",          	INTEGER, &gappih },
+		{ "gappoh",          	INTEGER, &gappoh },
+		{ "gappiv",          	INTEGER, &gappiv },
+		{ "gappov",       	INTEGER, &gappov },
 };
 
 
