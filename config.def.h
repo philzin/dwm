@@ -19,9 +19,9 @@ static const int user_bh            = 14;        /* 0 means that dwm will calcul
 static const char *fonts[]          = { "Siji", "monospace:pixelsize=12", "Noto Color Emoji:pixelsize=10" };
 static const char dmenufont[]       = "monospace:pixelsize=12";
 static char normbgcolor[]           = "#1d1f21";
-static char normbordercolor[]       = "#444444";
+static char normbordercolor[]       = "#666666";
 static char normfgcolor[]           = "#c5c8c6";
-static char selfgcolor[]            = "#ffffff";
+static char selfgcolor[]            = "#eaeaea";
 static char selbgcolor[]	    = "#198844";
 static char selbordercolor[]	    = "#198844";
 static char *colors[][3]            = {
