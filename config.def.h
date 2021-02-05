@@ -127,8 +127,8 @@ ResourcePref resources[] = {
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_r,      spawn,          {.v = dmenucmd } },
-	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = urxvtcmd } },
+	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY,                       XK_Return, spawn,          {.v = urxvtcmd } },
 	{ MODKEY,                       XK_c,	   spawn,      	   {.v = browsercmd } },
 	{ MODKEY,                       XK_d,	   spawn,      	   {.v = disccmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
