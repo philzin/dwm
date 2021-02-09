@@ -4,7 +4,7 @@
 static unsigned int borderpx        = 1;        /* border pixel of windows */
 static unsigned int snap            = 32;       /* snap pixel */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
-static const unsigned int systrayspacing = 1;   /* systray spacing */
+static unsigned int systrayspacing = 2;   /* systray spacing */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
 static const int showsystray        = 1;     /* 0 means no systray */
 static unsigned int gappih    = 0;       /* horiz inner gap between windows */
@@ -119,6 +119,7 @@ ResourcePref resources[] = {
 		{ "gappoh",          	INTEGER, &gappoh },
 		{ "gappiv",          	INTEGER, &gappiv },
 		{ "gappov",       	INTEGER, &gappov },
+		{ "systrayspacing",	INTEGER, &systrayspacing },
 };
 
 
@@ -127,8 +128,8 @@ ResourcePref resources[] = {
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_r,      spawn,          {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_Return, spawn,          {.v = urxvtcmd } },
+	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = urxvtcmd } },
+	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_c,	   spawn,      	   {.v = browsercmd } },
 	{ MODKEY,                       XK_d,	   spawn,      	   {.v = disccmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
