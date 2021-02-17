@@ -35,6 +35,16 @@ static char *colors[][3]            = {
 	[SchemeInfoNorm]  = { normfgcolor, normbgcolor,  "#000000"  }, // infobar middle  unselected {text,background,not used but cannot be empty}
 };
 
+typedef struct {
+	const char *name;
+	const void *cmd;
+} Sp;
+const char *spcmd1[] = { "st", "-n", "spterm", "-g", "120x34", "-e", "tmux", "new", "-A", "-s", "scratchpad", NULL };
+static Sp scratchpads[] = {
+	/*name		cmd */
+	{"spterm",	spcmd1},
+};
+
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
@@ -52,6 +62,7 @@ static const Rule rules[] = {
 	{ NULL,      NULL,     "Majsoul Plus", 1<<6,      0,          0,           0,        -1 },
 	{ NULL,      NULL,     "Transmission Remote", 1<<2, 0,        0,           0,        -1 },
 	{ "mpv",     NULL,     NULL,           1<<1,      0,          0,           0,        -1 },
+	{ NULL,	     "spterm", NULL,           SPTAG(0),  1,          0,           0,        -1 },
 };
 
 /* layout(s) */
@@ -82,8 +93,6 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, "-i", NULL };
 static const char *stcmd[]  = { "st", NULL };
 static const char *urxvtcmd[] = { "urxvt", NULL };
-static const char scratchpadname[] = "scratchpad";
-static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", "-e", "tmux", "new", "-A", "-s", "scratchpad", NULL };
 static const char *browsercmd[]  = { "chromium", NULL };
 static const char *disccmd[]  = { "discord", NULL };
 static const char *upvol[]   = { "pamixer", "-i", "5", NULL };
@@ -123,7 +132,6 @@ static Key keys[] = {
 	{ MODKEY,                       XK_r,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = urxvtcmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = stcmd } },
-	{ MODKEY,                       XK_grave,  togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY,                       XK_c,	   spawn,      	   {.v = browsercmd } },
 	{ MODKEY,                       XK_d,	   spawn,      	   {.v = disccmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
@@ -151,6 +159,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+	{ MODKEY,                       XK_grave,  togglescratch,  {.ui = 0 } },
 	{ 0,           XF86XK_AudioRaiseVolume,    spawn,          {.v = upvol   } },
 	{ 0,           XF86XK_AudioLowerVolume,    spawn,          {.v = downvol } },
 	{ 0,                  XF86XK_AudioMute,    spawn,          {.v = mutevol } },
@@ -183,7 +192,7 @@ static Button buttons[] = {
 	{ ClkStatusText,        0,              Button2,        spawn,          {.v = stcmd } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
-	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
+	{ ClkClientWin,         MODKEY,         Button1,        resizemouse,    {0} },
 	{ ClkTagBar,            0,              Button1,        view,           {0} },
 	{ ClkTagBar,            0,              Button3,        toggleview,     {0} },
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
