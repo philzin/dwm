@@ -31,8 +31,9 @@ static char *colors[][3]            = {
 	[SchemeStatus]  = { normfgcolor, normbgcolor,  "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
 	[SchemeTagsSel]  = { selfgcolor, selbgcolor,  "#000000"  }, // Tagbar left selected {text,background,not used but cannot be empty}
 	[SchemeTagsNorm]  = { normfgcolor, normbgcolor,  "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
-	[SchemeInfoSel]  = { selbgcolor, normbgcolor,  "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
+	[SchemeInfoSel]  = { selfgcolor, selbgcolor,  "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
 	[SchemeInfoNorm]  = { normfgcolor, normbgcolor,  "#000000"  }, // infobar middle  unselected {text,background,not used but cannot be empty}
+	[SchemeHid] = { selbgcolor, normbgcolor, "#000000"  },
 };
 
 typedef struct {
@@ -109,7 +110,7 @@ ResourcePref resources[] = {
 		{ "color8",             STRING,  &normbordercolor },
 		{ "color15",            STRING,  &normfgcolor },
 		{ "color2",             STRING,  &selbgcolor },
-		{ "color15",             STRING,  &selbordercolor },
+		{ "color15",            STRING,  &selbordercolor },
 		{ "color15",            STRING,  &selfgcolor },
 		{ "borderpx",          	INTEGER, &borderpx },
 		{ "snap",          	INTEGER, &snap },
@@ -135,8 +136,10 @@ static Key keys[] = {
 	{ MODKEY,                       XK_c,	   spawn,      	   {.v = browsercmd } },
 	{ MODKEY,                       XK_d,	   spawn,      	   {.v = disccmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
-	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
-	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
+	{ MODKEY,                       XK_j,      focusstackvis,  {.i = +1 } },
+	{ MODKEY,                       XK_k,      focusstackvis,  {.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_j,      focusstackhid,  {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_k,      focusstackhid,  {.i = -1 } },
 	{ MODKEY,                       XK_F5,     xrdb,           {.v = NULL } },
 	{ MODKEY,                       XK_F5,     defaultgaps,    {0} },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
@@ -159,6 +162,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+	{ MODKEY,                       XK_s,      show,           {0} },
+	{ MODKEY,                       XK_a,      hide,           {0} },
 	{ MODKEY,                       XK_grave,  togglescratch,  {.ui = 0 } },
 	{ 0,           XF86XK_AudioRaiseVolume,    spawn,          {.v = upvol   } },
 	{ 0,           XF86XK_AudioLowerVolume,    spawn,          {.v = downvol } },
@@ -188,6 +193,7 @@ static Button buttons[] = {
 	/* click                event mask      button          function        argument */
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
+	{ ClkWinTitle,          0,              Button1,        togglewin,      {0} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
 	{ ClkStatusText,        0,              Button2,        spawn,          {.v = stcmd } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
