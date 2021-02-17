@@ -117,7 +117,6 @@ ResourcePref resources[] = {
 };
 
 
-#include "shiftview.c"
 #include <X11/XF86keysym.h>
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -152,8 +151,6 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	{ MODKEY,              	        XK_Right,  shiftview,  	   { .i = +1 } },
-	{ MODKEY,              	        XK_Left,   shiftview,      { .i = -1 } },
 	{ 0,           XF86XK_AudioRaiseVolume,    spawn,          {.v = upvol   } },
 	{ 0,           XF86XK_AudioLowerVolume,    spawn,          {.v = downvol } },
 	{ 0,                  XF86XK_AudioMute,    spawn,          {.v = mutevol } },
