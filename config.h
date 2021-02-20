@@ -54,16 +54,16 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
-	{ "St",      NULL,     NULL,           0,         0,          1,           0,        -1 },
-	{ "URxvt",   NULL,     NULL,           0,         0,          1,           0,        -1 },
-	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
-	{ NULL,      NULL,     "Discord",      1<<7,      0,          0,           0,        -1 },
-	{ NULL,      NULL,     "雀魂Plus",     1<<6,      0,          0,           0,        -1 },
-	{ NULL,      NULL,     "Majsoul Plus", 1<<6,      0,          0,           0,        -1 },
-	{ NULL,      NULL,     "Transmission Remote", 1<<2, 0,        0,           0,        -1 },
-	{ "mpv",     NULL,     NULL,           1<<1,      0,          0,           0,        -1 },
-	{ NULL,	     "spterm", NULL,           SPTAG(0),  1,          0,           0,        -1 },
+	/* class     instance  title           tags mask  isfloating  monitor */
+	{ "St",      NULL,     NULL,           0,         0,          -1 },
+	{ "URxvt",   NULL,     NULL,           0,         0,          -1 },
+	{ NULL,      NULL,     "Event Tester", 0,         0,          -1 }, /* xev */
+	{ NULL,      NULL,     "Discord",      1<<7,      0,          -1 },
+	{ NULL,      NULL,     "雀魂Plus",     1<<6,      0,          -1 },
+	{ NULL,      NULL,     "Majsoul Plus", 1<<6,      0,          -1 },
+	{ NULL,      NULL,     "Transmission Remote", 1<<2, 0,        -1 },
+	{ "mpv",     NULL,     NULL,           1<<1,      0,          -1 },
+	{ NULL,	     "spterm", NULL,           SPTAG(0),  1,          -1 },
 };
 
 /* layout(s) */
