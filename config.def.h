@@ -41,9 +41,11 @@ typedef struct {
 	const void *cmd;
 } Sp;
 const char *spcmd1[] = { "st", "-n", "spterm", "-g", "120x34", "-e", "tmux", "new", "-A", "-s", "scratchpad", NULL };
+const char *spcmd2[] = { "st", "-n", "spcmus", "-g", "120x34", "-e", "tmux", "new", "-A", "-s", "cmus", "cmus", NULL };
 static Sp scratchpads[] = {
 	/*name		cmd */
 	{"spterm",	spcmd1},
+	{"spcmus",	spcmd2},
 };
 
 /* tagging */
@@ -64,6 +66,7 @@ static const Rule rules[] = {
 	{ NULL,      NULL,     "Transmission Remote", 1<<2, 0,        -1 },
 	{ "mpv",     NULL,     NULL,           1<<1,      0,          -1 },
 	{ NULL,	     "spterm", NULL,           SPTAG(0),  1,          -1 },
+	{ NULL,	     "spcmus", NULL,           SPTAG(1),  1,          -1 },
 };
 
 /* layout(s) */
@@ -101,6 +104,10 @@ static const char *downvol[]   = { "pamixer", "-d", "5", NULL };
 static const char *mutevol[]   = { "pamixer", "-t", NULL };
 static const char *brightup[] = { "brightnessctl", "s", "10%+", NULL };
 static const char *brightdown[] = { "brightnessctl", "s", "10%-", NULL };
+static const char *cmusplay[] = { "cmus-remote", "-u", NULL };
+static const char *cmusprev[] = { "cmus-remote", "-r", NULL };
+static const char *cmusnext[] = { "cmus-remote", "-n", NULL };
+static const char *cmusstop[] = { "cmus-remote", "-s", NULL };
 
 /*
  * Xresources preferences to load at startup
@@ -166,15 +173,20 @@ static Key keys[] = {
 	{ MODKEY,                       XK_s,      show,           {0} },
 	{ MODKEY,                       XK_a,      hide,           {0} },
 	{ MODKEY,                       XK_grave,  togglescratch,  {.ui = 0 } },
-	{ 0,           XF86XK_AudioRaiseVolume,    spawn,          {.v = upvol   } },
-	{ 0,           XF86XK_AudioLowerVolume,    spawn,          {.v = downvol } },
-	{ 0,                  XF86XK_AudioMute,    spawn,          {.v = mutevol } },
-	{ 0,		XF86XK_MonBrightnessUp,	   spawn,	   {.v = brightup } },
-	{ 0,		XF86XK_MonBrightnessDown,  spawn,	   {.v = brightdown } },
-	{ 0,				XK_Print,  spawn,	   SHCMD("maim -u | tee ~/Pictures/screenshots/$(date +%s).png ~/.cache/lastscr.png | xclip -selection clipboard -target image/png") },
-	{ ControlMask,			XK_Print,  spawn,	   SHCMD("maim -su | tee ~/Pictures/screenshots/$(date +%s).png ~/.cache/lastscr.png | xclip -selection clipboard -target image/png") },
-	{ Mod1Mask,			XK_Print,  spawn,	   SHCMD("maim -ui $(xdotool getactivewindow) | tee ~/Pictures/screenshots/$(date +%s).png ~/.cache/lastscr.png | xclip -selection clipboard -target image/png") },
-	{ ControlMask|MODKEY|Mod1Mask,  XK_u,      spawn,	   SHCMD("curl -fsL -F \"files[]=@$(realpath ~/.cache/lastscr.png)\" https://uguu.se/upload.php | jq -r '.files[].url' | xclip -selection clipboard && dunstify -I ~/.cache/lastscr.png 'Screenshot uploaded' \"$(xclip -o -selection clipboard)\"") },
+	{ MODKEY,                       XK_Home,   togglescratch,  {.ui = 1 } },
+	{ 0,              XF86XK_AudioRaiseVolume, spawn,          {.v = upvol   } },
+	{ 0,              XF86XK_AudioLowerVolume, spawn,          {.v = downvol } },
+	{ 0,                     XF86XK_AudioMute, spawn,          {.v = mutevol } },
+	{ 0,               XF86XK_MonBrightnessUp, spawn,          {.v = brightup } },
+	{ 0,             XF86XK_MonBrightnessDown, spawn,          {.v = brightdown } },
+	{ 0,                     XF86XK_AudioPrev, spawn,          {.v = cmusprev } },
+	{ 0,                     XF86XK_AudioPlay, spawn,          {.v = cmusplay } },
+	{ 0,                     XF86XK_AudioNext, spawn,          {.v = cmusnext } },
+	{ 0,                     XF86XK_AudioStop, spawn,          {.v = cmusstop } },
+	{ 0,                            XK_Print,  spawn,          SHCMD("maim -u | tee ~/Pictures/screenshots/$(date +%s).png ~/.cache/lastscr.png | xclip -selection clipboard -target image/png") },
+	{ ControlMask,                  XK_Print,  spawn,          SHCMD("maim -su | tee ~/Pictures/screenshots/$(date +%s).png ~/.cache/lastscr.png | xclip -selection clipboard -target image/png") },
+	{ Mod1Mask,                     XK_Print,  spawn,          SHCMD("maim -ui $(xdotool getactivewindow) | tee ~/Pictures/screenshots/$(date +%s).png ~/.cache/lastscr.png | xclip -selection clipboard -target image/png") },
+	{ ControlMask|MODKEY|Mod1Mask,  XK_u,      spawn,          SHCMD("curl -fsL -F \"files[]=@$(realpath ~/.cache/lastscr.png)\" https://uguu.se/upload.php | jq -r '.files[].url' | xclip -selection clipboard && dunstify -I ~/.cache/lastscr.png 'Screenshot uploaded' \"$(xclip -o -selection clipboard)\"") },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
