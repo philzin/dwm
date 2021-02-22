@@ -97,17 +97,23 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, "-i", NULL };
 static const char *stcmd[]  = { "st", NULL };
 static const char *urxvtcmd[] = { "urxvt", NULL };
+
 static const char *browsercmd[]  = { "chromium", NULL };
 static const char *disccmd[]  = { "discord", NULL };
+
 static const char *upvol[]   = { "pamixer", "-i", "5", NULL };
 static const char *downvol[]   = { "pamixer", "-d", "5", NULL };
 static const char *mutevol[]   = { "pamixer", "-t", NULL };
+
 static const char *brightup[] = { "brightnessctl", "s", "10%+", NULL };
 static const char *brightdown[] = { "brightnessctl", "s", "10%-", NULL };
+
 static const char *cmusplay[] = { "cmus-remote", "-u", NULL };
 static const char *cmusprev[] = { "cmus-remote", "-r", NULL };
 static const char *cmusnext[] = { "cmus-remote", "-n", NULL };
 static const char *cmusstop[] = { "cmus-remote", "-s", NULL };
+
+static const char *cmusnotify[] = { "cmus-notify", NULL };
 
 /*
  * Xresources preferences to load at startup
@@ -174,6 +180,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_a,      hide,           {0} },
 	{ MODKEY,                       XK_grave,  togglescratch,  {.ui = 0 } },
 	{ MODKEY,                       XK_Home,   togglescratch,  {.ui = 1 } },
+	{ MODKEY|ShiftMask,             XK_Home,   spawn,          {.v = cmusnotify } },
 	{ 0,              XF86XK_AudioRaiseVolume, spawn,          {.v = upvol   } },
 	{ 0,              XF86XK_AudioLowerVolume, spawn,          {.v = downvol } },
 	{ 0,                     XF86XK_AudioMute, spawn,          {.v = mutevol } },
