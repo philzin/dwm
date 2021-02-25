@@ -112,6 +112,8 @@ static const char *cmusplay[] = { "cmus-remote", "-u", NULL };
 static const char *cmusprev[] = { "cmus-remote", "-r", NULL };
 static const char *cmusnext[] = { "cmus-remote", "-n", NULL };
 static const char *cmusstop[] = { "cmus-remote", "-s", NULL };
+static const char *cmusvolu[] = { "cmus-remote", "-v", "+10%", NULL };
+static const char *cmusvold[] = { "cmus-remote", "-v", "-10%", NULL };
 
 static const char *cmusnotify[] = { "cmus-notify", NULL };
 
@@ -181,6 +183,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_grave,  togglescratch,  {.ui = 0 } },
 	{ MODKEY,                       XK_Home,   togglescratch,  {.ui = 1 } },
 	{ MODKEY|ShiftMask,             XK_Home,   spawn,          {.v = cmusnotify } },
+	{ MODKEY,                       XK_Prior,  spawn,          {.v = cmusvolu } },
+	{ MODKEY,                       XK_Next,   spawn,          {.v = cmusvold } },
 	{ 0,              XF86XK_AudioRaiseVolume, spawn,          {.v = upvol   } },
 	{ 0,              XF86XK_AudioLowerVolume, spawn,          {.v = downvol } },
 	{ 0,                     XF86XK_AudioMute, spawn,          {.v = mutevol } },
