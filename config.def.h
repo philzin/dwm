@@ -16,8 +16,8 @@ static const int swallowfloating    = 0;        /* 1 means swallow floating wind
 static int showbar                  = 1;        /* 0 means no bar */
 static int topbar                   = 1;        /* 0 means bottom bar */
 static int user_bh                  = 14;        /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
-static const char *fonts[]          = { "Siji", "Terminus:pixelsize=12", "Kochi Gothic:pixelsize=14", "Noto Color Emoji:pixelsize=10" };
-static const char dmenufont[]       = "Terminus:pixelsize=12";
+static const char *fonts[]          = { "Siji", "Terminus:pixelsize=14", "Kochi Gothic:pixelsize=14", "Noto Color Emoji:pixelsize=10" };
+static const char dmenufont[]       = "Terminus:pixelsize=14";
 static char normbgcolor[]           = "#1d1f21";
 static char normbordercolor[]       = "#666666";
 static char normfgcolor[]           = "#c5c8c6";
@@ -31,7 +31,7 @@ static char *colors[][3]            = {
 	[SchemeStatus]  = { normfgcolor, normbgcolor,  "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
 	[SchemeTagsSel]  = { selfgcolor, selbgcolor,  "#000000"  }, // Tagbar left selected {text,background,not used but cannot be empty}
 	[SchemeTagsNorm]  = { normfgcolor, normbgcolor,  "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
-	[SchemeInfoSel]  = { normbgcolor, selbgcolor,  "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
+	[SchemeInfoSel]  = { selfgcolor, selbgcolor,  "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
 	[SchemeInfoNorm]  = { normfgcolor, normbgcolor,  "#000000"  }, // infobar middle  unselected {text,background,not used but cannot be empty}
 	[SchemeHid] = { normbordercolor, normbgcolor, "#000000"  },
 };
@@ -49,7 +49,7 @@ static Sp scratchpads[] = {
 };
 
 /* tagging */
-static const char *tags[] = { "一", "二", "三", "四", "五", "六", "七", "八", "九" };
+static const char *tags[] = { "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" };
 
 static const Rule rules[] = {
 	/* xprop(1):
