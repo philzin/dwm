@@ -40,8 +40,8 @@ typedef struct {
 	const char *name;
 	const void *cmd;
 } Sp;
-const char *spcmd1[] = { "st", "-n", "spterm", "-g", "120x34", "-e", "tmux", "new", "-A", "-s", "scratchpad", NULL };
-const char *spcmd2[] = { "st", "-n", "spcmus", "-g", "120x34", "-e", "tmux", "new", "-A", "-s", "cmus", "cmus", NULL };
+const char *spcmd1[] = { "urxvtc", "-name", "spterm", "-g", "120x34", "-e", "tmux", "new", "-A", "-s", "scratchpad", NULL };
+const char *spcmd2[] = { "urxvtc", "-name", "spcmus", "-g", "120x34", "-e", "tmux", "new", "-A", "-s", "cmus", "cmus", NULL };
 static Sp scratchpads[] = {
 	/*name		cmd */
 	{"spterm",	spcmd1},
@@ -96,7 +96,7 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, "-i", NULL };
 static const char *stcmd[]  = { "st", NULL };
-static const char *urxvtcmd[] = { "urxvt", NULL };
+static const char *urxvtcmd[] = { "urxvtc", NULL };
 
 static const char *browsercmd[]  = { "chromium", NULL };
 static const char *disccmd[]  = { "discord", NULL };
@@ -147,8 +147,8 @@ ResourcePref resources[] = {
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_r,      spawn,          {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = urxvtcmd } },
-	{ MODKEY,                       XK_Return, spawn,          {.v = stcmd } },
+	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = stcmd } },
+	{ MODKEY,                       XK_Return, spawn,          {.v = urxvtcmd } },
 	{ MODKEY,                       XK_c,	   spawn,      	   {.v = browsercmd } },
 	{ MODKEY,                       XK_d,	   spawn,      	   {.v = disccmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
