@@ -902,7 +902,7 @@ drawbar(Monitor *m)
 	if (m == selmon) { /* status is only drawn on selected monitor */
 		drw_setscheme(drw, scheme[SchemeStatus]);
 		tw = TEXTW(stext) - lrpad / 2 + 2; /* 2px right padding */
-		drw_text(drw, m->ww - tw - stw - 2 * sp, 0, tw, bh, lrpad / 2 - 2, stext, 0);
+		drw_text(drw, m->ww - tw - stw - 2 * sp, 0, tw, bh, lrpad / 2 + 2, stext, 0);
 	}
 
 	resizebarwin(m);
@@ -953,7 +953,7 @@ drawbar(Monitor *m)
 				pad = lrpad / 2;
 				if (TEXTW(c->name) < tabw)
 					pad = (tabw - TEXTW(c->name) + lrpad) / 2;
-				drw_text(drw, x, 0, tabw - 2 * sp , bh, pad, c->name, 0);
+				drw_text(drw, x, 0, tabw, bh, pad, c->name, 0);
 				x += tabw;
 			}
 		} else {
