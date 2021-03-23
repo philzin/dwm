@@ -2282,9 +2282,9 @@ togglebar(const Arg *arg)
 		if (!selmon->showbar)
 			wc.y = -bh;
 		else if (selmon->showbar) {
-			wc.y = 0;
+			wc.y = vp;
 			if (!selmon->topbar)
-				wc.y = selmon->mh - bh;
+				wc.y = selmon->mh - bh - vp;
 		}
 		XConfigureWindow(dpy, systray->win, CWY, &wc);
 	}
