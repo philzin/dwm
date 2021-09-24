@@ -17,7 +17,7 @@ static int topbar                   = 1;        /* 0 means bottom bar */
 static int vertpad            = 8;       /* vertical padding of bar */
 static int sidepad            = 8;       /* horizontal padding of bar */
 static int user_bh                  = 14;        /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
-static const char *fonts[]          = { "Siji", "Terminus:pixelsize=12", "Kochi Gothic:pixelsize=14", "Noto Color Emoji:pixelsize=10" };
+static const char *fonts[]          = { "Siji", "xos4 Terminus:pixelsize=12", "Kochi Gothic:pixelsize=14", "Noto Color Emoji:pixelsize=10" };
 static const char dmenufont[]       = "Terminus:pixelsize=12";
 static char normbgcolor[]           = "#1d1f21";
 static char normbordercolor[]       = "#666666";
@@ -65,6 +65,7 @@ static const Rule rules[] = {
 	{ NULL,      NULL,     "雀魂Plus",     1<<6,      0,          -1 },
 	{ NULL,      NULL,     "Majsoul Plus", 1<<6,      0,          -1 },
 	{ NULL,      NULL,     "Transmission Remote", 1<<2, 0,        -1 },
+	{ NULL,      NULL,     "OpenOSRS",     1<<3,      0,          -1 },
 	{ "mpv",     NULL,     NULL,           1<<1,      0,          -1 },
 	{ NULL,	     "spterm", NULL,           SPTAG(0),  1,          -1 },
 	{ NULL,	     "spcmus", NULL,           SPTAG(1),  1,          -1 },
@@ -75,11 +76,13 @@ static float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
 static int nmaster     = 1;    /* number of clients in master area */
 static int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 
+#include "gaplessgrid.c"
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "",      tile },    /* first entry is default */
 	{ "",      NULL },    /* no layout function means floating behavior */
 	{ "",      monocle },
+	{ "",      gaplessgrid },
 };
 
 /* key definitions */
@@ -171,7 +174,7 @@ static Key keys[] = {
 	{ Mod1Mask,                     XK_F4,     killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[3]} },
 	{ MODKEY,                       XK_q,      setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY|ShiftMask,             XK_f,      togglefullscr,  {0} },
