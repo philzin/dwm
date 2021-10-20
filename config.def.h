@@ -99,6 +99,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, "-i", NULL };
+static const char *dmenudesktopcmd[] = { "j4-dmenu-desktop", "--term=urxvtc", "--no-generic", NULL };
 static const char *stcmd[]  = { "st", NULL };
 static const char *urxvtcmd[] = { "urxvtc", NULL };
 
@@ -154,6 +155,7 @@ ResourcePref resources[] = {
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_r,      spawn,          {.v = dmenucmd } },
+	{ MODKEY|ShiftMask,             XK_r,      spawn,          {.v = dmenudesktopcmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = stcmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = urxvtcmd } },
 	{ MODKEY,                       XK_c,	   spawn,      	   {.v = browsercmd } },
