@@ -18,7 +18,7 @@ static int vertpad            = 8;       /* vertical padding of bar */
 static int sidepad            = 8;       /* horizontal padding of bar */
 static int user_bh                  = 14;        /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
 static const char *fonts[]          = { "Siji", "Terminus:pixelsize=14", "Kochi Gothic:pixelsize=14", "Noto Color Emoji:pixelsize=10" };
-static const char dmenufont[]       = "Terminus:pixelsize=12";
+static const char dmenufont[]       = "Terminus:pixelsize=14";
 static char normbgcolor[]           = "#1d1f21";
 static char normbordercolor[]       = "#666666";
 static char normfgcolor[]           = "#c5c8c6";
