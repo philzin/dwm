@@ -122,7 +122,7 @@ static const char *cmusvold[] = { "cmus-remote", "-v", "-10%", NULL };
 
 static const char *cmusnotify[] = { "cmus-notify", NULL };
 
-static const chat *dunstclose[] = { "dunstctl", "close-all", NULL };
+static const char *dunstclose[] = { "dunstctl", "close-all", NULL };
 
 /*
  * Xresources preferences to load at startup
