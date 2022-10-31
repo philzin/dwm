@@ -61,11 +61,9 @@ static const Rule rules[] = {
 	{ "St",      NULL,     NULL,           0,         0,          -1 },
 	{ "URxvt",   NULL,     NULL,           0,         0,          -1 },
 	{ NULL,      NULL,     "Event Tester", 0,         0,          -1 }, /* xev */
-	{ NULL,      NULL,     "Discord",      1<<7,      0,          -1 },
-	{ NULL,      NULL,     "雀魂Plus",     1<<6,      0,          -1 },
-	{ NULL,      NULL,     "Majsoul Plus", 1<<6,      0,          -1 },
+	/* { NULL,      NULL,     "Discord",      1<<7,      0,          -1 }, */
 	{ NULL,      NULL,     "Transmission Remote", 1<<2, 0,        -1 },
-	{ NULL,      NULL,     "OpenOSRS",     1<<3,      0,          -1 },
+	{ NULL,      NULL,     "RuneLite",     1<<3,      0,          -1 },
 	{ "mpv",     NULL,     NULL,           1<<1,      0,          -1 },
 	{ NULL,	     "spterm", NULL,           SPTAG(0),  1,          -1 },
 	{ NULL,	     "spcmus", NULL,           SPTAG(1),  1,          -1 },
@@ -104,7 +102,7 @@ static const char *stcmd[]  = { "st", NULL };
 static const char *urxvtcmd[] = { "urxvtc", NULL };
 
 static const char *browsercmd[]  = { "chromium", NULL };
-static const char *disccmd[]  = { "discord", NULL };
+static const char *disccmd[]  = { "discord", "--no-sandbox", NULL };
 
 static const char *upvol[]   = { "pamixer", "-i", "5", NULL };
 static const char *downvol[]   = { "pamixer", "-d", "5", NULL };
