@@ -273,6 +273,7 @@ static void setmfact(const Arg *arg);
 static void setup(void);
 static void seturgent(Client *c, int urg);
 static void show(const Arg *arg);
+static void showall(const Arg *arg);
 static void showwin(Client *c);
 static void showhide(Client *c);
 static void sigchld(int unused);
@@ -890,10 +891,13 @@ void
 drawbar(Monitor *m)
 {
 	int x, w, tw = 0, stw = 0, n = 0, scm;
-/*	int boxs = drw->fonts->h / 9;
-	int boxw = drw->fonts->h / 6 + 2; */
+	int boxs = drw->fonts->h / 9;
+	int boxw = drw->fonts->h / 6 + 2;
 	unsigned int i, occ = 0, urg = 0;
 	Client *c;
+
+	if (!m->showbar)
+		return;
 
 	if(showsystray && m == systraytomon(m))
 		stw = getsystraywidth();
@@ -902,7 +906,7 @@ drawbar(Monitor *m)
 	/* if (m == selmon) { /1* status is only drawn on selected monitor *1/ */
 		drw_setscheme(drw, scheme[SchemeStatus]);
 		tw = TEXTW(stext) - lrpad / 2 + 2; /* 2px right padding */
-		drw_text(drw, m->ww - tw - stw - 2 * sp, 0, tw, bh, lrpad / 2 + 2, stext, 0);
+		drw_text(drw, m->ww - tw - stw - 2 * sp, 0, tw, bh, lrpad / 2, stext, 0);
 	/* } */
 
 	resizebarwin(m);
@@ -2141,6 +2145,23 @@ show(const Arg *arg)
 	if (selmon->hidsel)
 		selmon->hidsel = 0;
 	showwin(selmon->sel);
+}
+
+void
+showall(const Arg *arg)
+{
+	Client *c = NULL;
+	selmon->hidsel = 0;
+	for (c = selmon->clients; c; c = c->next) {
+		if (ISVISIBLE(c))
+			showwin(c);
+	}
+	if (!selmon->sel) {
+		for (c = selmon->clients; c && !ISVISIBLE(c); c = c->next);
+		if (c)
+			focus(c);
+	}
+	restack(selmon);
 }
 
 void
