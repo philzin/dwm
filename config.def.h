@@ -108,9 +108,6 @@ static const char *upvol[]   = { "pamixer", "-i", "5", NULL };
 static const char *downvol[]   = { "pamixer", "-d", "5", NULL };
 static const char *mutevol[]   = { "pamixer", "-t", NULL };
 
-static const char *brightup[] = { "brightnessctl", "s", "10%+", NULL };
-static const char *brightdown[] = { "brightnessctl", "s", "10%-", NULL };
-
 static const char *cmusplay[] = { "cmus-remote", "-u", NULL };
 static const char *cmusprev[] = { "cmus-remote", "-r", NULL };
 static const char *cmusnext[] = { "cmus-remote", "-n", NULL };
@@ -198,8 +195,6 @@ static Key keys[] = {
 	{ 0,              XF86XK_AudioRaiseVolume, spawn,          {.v = upvol   } },
 	{ 0,              XF86XK_AudioLowerVolume, spawn,          {.v = downvol } },
 	{ 0,                     XF86XK_AudioMute, spawn,          {.v = mutevol } },
-	{ 0,               XF86XK_MonBrightnessUp, spawn,          {.v = brightup } },
-	{ 0,             XF86XK_MonBrightnessDown, spawn,          {.v = brightdown } },
 	{ 0,                     XF86XK_AudioPrev, spawn,          {.v = cmusprev } },
 	{ 0,                     XF86XK_AudioPlay, spawn,          {.v = cmusplay } },
 	{ 0,                     XF86XK_AudioNext, spawn,          {.v = cmusnext } },
@@ -207,7 +202,6 @@ static Key keys[] = {
 	{ 0,                            XK_Print,  spawn,          SHCMD("maim -u | tee ~/Pictures/screenshots/$(date +%s).png ~/.cache/lastscr.png | xclip -selection clipboard -target image/png") },
 	{ ControlMask,                  XK_Print,  spawn,          SHCMD("maim -su | tee ~/Pictures/screenshots/$(date +%s).png ~/.cache/lastscr.png | xclip -selection clipboard -target image/png") },
 	{ MODKEY,                       XK_Print,  spawn,          SHCMD("maim -ui $(xdotool getactivewindow) | tee ~/Pictures/screenshots/$(date +%s).png ~/.cache/lastscr.png | xclip -selection clipboard -target image/png") },
-	{ ControlMask|MODKEY|Mod1Mask,  XK_u,      spawn,          SHCMD("curl -fsL -F \"file=@$(realpath ~/.cache/lastscr.png)\" https://hasel.xyz/ | xclip -selection clipboard && dunstify -I ~/.cache/lastscr.png 'Screenshot uploaded' \"$(xclip -o -selection clipboard)\"") },
 	{ ControlMask,                  XK_space,  spawn,          {.v = dunstclose } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
